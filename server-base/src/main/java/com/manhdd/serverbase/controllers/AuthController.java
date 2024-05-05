@@ -81,17 +81,22 @@ public class AuthController {
 
     }
 
+//    @GetMapping("/log-out")
+//    public ResponseEntity<?> logOut(Authentication authentication) {
+//        try {
+//            return ResponseEntity.ok(authentication);
+////            SecurityContextHolder.clearContext();
+////            return ResponseEntity.ok("SUCCESSFULLY");
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+//        }
+//    }
+
     private String generateSalt() {
-        // Use a SecureRandom for cryptographically secure randomness
         SecureRandom random = new SecureRandom();
-
-        // Set desired salt size (in bytes)
-        int saltSize = 16; // Adjust as needed, typically 16 or 32 bytes
+        int saltSize = 16;
         byte[] salt = new byte[saltSize];
-
-        // Generate random bytes for the salt
         random.nextBytes(salt);
-
         return Base64.getEncoder().encodeToString(salt);
     }
 }

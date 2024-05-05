@@ -28,7 +28,7 @@ public class ApplicationController {
     public ResponseEntity<?> rakeRole() {
         for (RoleEnum eRole : RoleEnum.values()) {
             String roleName = eRole.name();
-            Role role = new Role(roleName, "");
+            Role role = new Role(roleName, eRole, "");
             roleRepository.save(role);
         }
         return ResponseEntity.ok("OK");

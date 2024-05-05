@@ -15,14 +15,14 @@ import java.util.Date;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class JwtHelper {
-
+    // Mỗi lần chạy tạo mới một SECRET
     private static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     private static final int MINUTES = 60;
 
     public static String generateToken(User user) {
         var now = Instant.now();
         return Jwts.builder()
-                .subject(String.format("%s,%s", user.getId(), user.getUsername()))
+                .subject(user.getUsername())
                 .issuer("ManhDinh")
                 .issuedAt(Date.from(now))
                 .expiration(Date.from(now.plus(MINUTES, ChronoUnit.MINUTES)))
